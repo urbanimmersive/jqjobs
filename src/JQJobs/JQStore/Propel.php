@@ -140,7 +140,9 @@ class JQStore_Propel implements JQStore
             // EXCLUSIVE mode is used b/c it's the most exclusive mode that doesn't conflict with pg_dump (which uses ACCESS SHARE)
             // see http://stackoverflow.com/questions/6507475/job-queue-as-sql-table-with-multiple-consumers-postgresql/6702355#6702355
             // theoretically this lock should prevent the unique index from ever tripping.
-            $lockSql = "lock table {$this->options['tableName']} in EXCLUSIVE mode;";
+
+            //adding lock_timeout to prevent database lockout...
+            $lockSql = "SET LOCAL lock_timeout = '1s'; lock table {$this->options['tableName']} in EXCLUSIVE mode;";
             $this->con->query($lockSql);
 
             return $this->getByCoalesceId($coalesceId);
