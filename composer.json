@@ -1,9 +1,9 @@
 {
-    "name": "apinstein/jqjobs",
+    "name": "urbanimmersive/jqjobs",
     "type": "library",
     "description": "Async job manager for PHP.",
     "keywords": ["job","queue"],
-    "homepage": "http://github.com/apinstein/jqjobs",
+    "homepage": "http://github.com/urbanimmersive/jqjobs",
     "license": "MIT",
     "authors": [
         {
